@@ -2,17 +2,19 @@
     <div id="resumeEditor">
         <nav>
             <ol>
-                <li v-for="(item,index) in resume.visibleItems"
-                v-bind:class="{active:item===selected}"
-                v-on:click="selected=item" >
-                    {{index}}
+                <li v-for="(item,index) in resume.config"
+                v-bind:class="{active:item.field===selected}"
+                v-on:click="selected=item.field" >
+                    <svg class="icon">
+                        <use :xlink:href="`#icon-${item.icon}`"></use>
+                    </svg>
                 </li>
             </ol>
         </nav>
         <ol class="panels">
-            <li v-for="item in resume.visibleItems"
-            v-show="item===selected">
-            {{resume[item]}}
+            <li v-for="item in resume.config"
+            v-show="item.field===selected">
+            {{resume[item.field]}}
             </li>
         </ol>
     </div>
@@ -23,10 +25,17 @@
         name:'resumeEditor',
         data:function(){
             return {
-                selected:'bio',
+                selected:'profile',
                 resume:{
-                    visibleItems:['bid','work history','education','projects','awards','contacts','others'],
-                    bio:{
+                    config:[
+                        {field:'profile',icon:'id'},
+                        {field:'work history',icon:'work'},
+                        {field:'education',icon:'book'},
+                        {field:'projects',icon:'heart'},
+                        {field:'awards',icon:'cup'},
+                        {field:'contacts',icon:'phone'},
+                    ],
+                    profile:{
                         name:'',
                         city:'',
                         title:''
@@ -73,5 +82,9 @@
   }
   ol{
       list-style:none;
+  }
+  svg.icon{
+      width: 24px; // 原设计稿 32px 不好看，改成 24px
+      height: 24px;
   }
 </style>

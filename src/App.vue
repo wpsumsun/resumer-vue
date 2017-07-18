@@ -17,6 +17,7 @@ import 'normalize.css'
 import Topbar from './components/Topbar'
 import ResumeEditor from './components/ResumeEditor'
 import ResumerPreview from './components/ResumerPreview'
+import icons from './assets/icons'
 
 export default {
   name: 'app',
@@ -25,7 +26,10 @@ export default {
       text: '你好'
     }
   },
-  components:{Topbar,ResumeEditor,ResumerPreview}
+  components:{Topbar,ResumeEditor,ResumerPreview},
+  created(){
+    document.body.insertAdjacentHTML('afterbegin',icons)
+  }
 }
 </script>
 
@@ -52,5 +56,12 @@ export default {
   #ResumerPreview{
     flex-grow:1;
     margin-left:16px;
+  }
+  svg.icon{
+    height: 1em;
+    width: 1em;
+    fill: currentColor;
+    vertical-align: -0.1em;
+    font-size:16px;
   }
 </style>
