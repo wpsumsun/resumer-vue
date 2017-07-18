@@ -1,0 +1,19 @@
+<template>
+    <div id="resumePreview">
+        i am resumePreview
+    </div>
+</template>
+
+<script>
+    export default {
+        name:'resumePreview'
+    }
+</script>
+
+<style>
+ #resumePreview{
+    width: 61.66667%;
+    background: #fff;
+    box-shadow:0 1px 3px 0 rgba(0,0,0,0,25);
+  }
+</style>
