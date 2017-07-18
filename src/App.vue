@@ -29,26 +29,25 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
   .page{
     height: 100vh;
     display: flex;
     flex-direction: column;
     background:#eaebec;
-  }
-  .page>main{
-    
-  }
-  .page>main{
-    display: flex;
-    flex-grow: 1;  
-    width:100%;
-    align-self:center;
-    min-width: 1024px;
-    max-width: 1440px;
-    margin: 16px 0;
-    padding:0 16px;
-    justify-content: space-between;
+    >main{
+      flex-grow: 1; 
+    }
+    >main{
+      display: flex; 
+      width:100%;
+      align-self:center;
+      min-width: 1024px;
+      max-width: 1440px;
+      margin: 16px 0;
+      padding:0 16px;
+      justify-content: space-between;
+    }
   }
   #ResumerPreview{
     flex-grow:1;
