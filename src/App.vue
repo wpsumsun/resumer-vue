@@ -37,13 +37,21 @@ export default {
     background:#eaebec;
   }
   .page>main{
-    flex-grow: 1;  
+    
   }
   .page>main{
+    display: flex;
+    flex-grow: 1;  
+    width:100%;
+    align-self:center;
     min-width: 1024px;
     max-width: 1440px;
     margin: 16px 0;
-    display: flex;
-    justify-content: space-around;
+    padding:0 16px;
+    justify-content: space-between;
+  }
+  #ResumerPreview{
+    flex-grow:1;
+    margin-left:16px;
   }
 </style>
