@@ -11,9 +11,9 @@
 </template>
 
 <script>
+
 import './assets/reset.css'
 import 'normalize.css'
-
 import Topbar from './components/Topbar'
 import ResumeEditor from './components/ResumeEditor'
 import ResumerPreview from './components/ResumerPreview'
