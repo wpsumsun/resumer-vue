@@ -37,10 +37,10 @@ export default {
     flex-direction: column;
     background:#eaebec;
     >main{
-      flex-grow: 1; 
+      flex-grow: 1;
     }
     >main{
-      display: flex; 
+      display: flex;
       width:100%;
       align-self:center;
       min-width: 1024px;
