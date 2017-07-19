@@ -21,13 +21,22 @@
             </li>
           </ol>
         </section>
-        <section>
+        <section data-name="education">
           <h2>毕业院校</h2>
           <ol>
             <li v-for="item in resume.education">
               <h3>{{item.school}}
                 <span v-show="item.content">-{{item.content}}</span>
               </h3>
+            </li>
+          </ol>
+        </section>
+        <section data-name="projects" v-show="resume.projects">
+          <h2>项目</h2>
+          <ol>
+            <li v-for="item in resume.projects">
+              <h3>{{item.name}}</h3>
+              <p>{{item.content}}</p>
             </li>
           </ol>
         </section>

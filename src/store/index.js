@@ -39,7 +39,7 @@ export default  new Vuex.Store({
                     ],
                     contacts: [
                         { contact: '手机', content: '13812345678' },
-                        { contact: '球球', content: '12345678' },
+                        { contact: 'qq', content: '12345678' },
                     ],
                 }
     },

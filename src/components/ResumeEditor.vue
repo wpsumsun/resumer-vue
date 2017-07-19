@@ -18,13 +18,13 @@
                     <div class="subitem" v-for="subitem in resume[item.field]">
                         <div class="resumeField" v-for="(value,key) in subitem">
                             <label>{{ key }}</label>
-                            <input type="text" v-bind:value="value">
+                            <input type="text" v-bind:value="value" v-on:input="subitem[key]=$event.target.value">
                         </div>
                     </div>
                 </div>
                 <div v-else class="resumeField" v-for="(value,key) in resume[item.field]">
                     <label>{{key}}</label>
-                    <input type="text" v-model="resume[item.field][key]">
+                    <input type="text" :value="value" @input="resume[item.field][key]=$event.target.value">
                 </div>
             </li>
         </ol>
