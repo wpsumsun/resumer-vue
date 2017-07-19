@@ -34,12 +34,12 @@ export default  new Vuex.Store({
                         { name: 'project B', content: '文字' },
                     ],
                     awards: [
-                        { name: 'awards A', content: '文字' },
-                        { name: 'awards B', content: '文字' },
+                        { name: '再来一瓶', content: '运气真好' },
+                        { name: '吊车尾', content: '' },
                     ],
                     contacts: [
-                        { contact: 'phone', content: '13812345678' },
-                        { contact: 'qq', content: '12345678' },
+                        { contact: '手机', content: '13812345678' },
+                        { contact: '球球', content: '12345678' },
                     ],
                 }
     },

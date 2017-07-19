@@ -31,6 +31,24 @@
             </li>
           </ol>
         </section>
+        <section data-name="awards" v-show="resume.awards">
+          <h2>获奖情况</h2>
+          <ol>
+            <li v-for="item in resume.awards">
+              <h3>{{item.name}}</h3>
+              <p v-show="item.content">{{item.content}}</p>
+            </li>
+          </ol>
+        </section>
+        <section data-name="contacts" v-show="resume.contacts">
+          <h2>联系方式</h2>
+          <table>
+            <tr v-for="item in resume.contacts">
+              <td>{{item.contact}}</td>
+              <td v-show="item.content">{{item.content}}</td>
+            </tr>
+          </table>
+        </section>
     </div>
 </template>
 
@@ -42,15 +60,12 @@
                 return this.$store.state.resume
             },
         },
-        created(){
-          console.loe(this.resume)
-        }
     }
 </script>
 
 <style lang="scss">
   #resumePreview{width: 61.66667%;background: #fff;box-shadow:0 1px 3px 0 rgba(0,0,0,0.25); background:white; box-shadow:0 1px 3px 0 rgba(0,0,0,0.25); padding: 2em;
-    color: #333; line-height: 1.2;
+    color: #333; line-height: 1.2;overflow:auto;
     * {box-sizing: border-box; font-variant: normal; font-weight: normal;}
     ol{ list-style: none; }
     section + section{ margin-top: 2em; }
@@ -63,7 +78,9 @@
     section[data-name="profile"]{
       > h1{ margin: .1em 0; font-size: 4em; }
     }
-    section[data-name="workHistory"]{
+    section[data-name="workHistory"],
+    section[data-name="projects"],
+    section[data-name="awards"]{
       li + li { margin-top: 1em; }
       li {
         h3{ border-bottom: 1px solid #999; padding-bottom: .3em; margin-bottom: .3em; }
@@ -72,6 +89,11 @@
     section[data-name="education"]{
       li{
         line-height: 1.5;
+      }
+    }
+    section[data-name="contacts"]{
+      td:first-child{
+        padding-right: 1em;
       }
     }
   }
