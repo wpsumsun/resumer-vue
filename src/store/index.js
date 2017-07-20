@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 import Vue from 'vue'
+import objectPath from 'object-path'
 
 Vue.use(Vuex)
 
@@ -16,7 +17,7 @@ export default  new Vuex.Store({
                         {field:'contacts',icon:'phone'},
                     ],
                     profile:{
-                        name:'王朽木',
+                        name:'王嗨',
                         city:'衡水',
                         title:'辣鸡~',
                         birthday:'1990-01-01'
@@ -46,6 +47,9 @@ export default  new Vuex.Store({
     mutations:{
         switchTab(state,payload){
             state.selected=payload
+        },
+        updateResume(state,{path,value}){
+            objectPath.set(state.resume,path,value)
         }
     }
 })
