@@ -7,7 +7,11 @@ Vue.use(Vuex)
 export default  new Vuex.Store({
     state:{
         selected:'profile',
-                resume:{
+        user:{
+            id:'123',
+            username:''
+        },
+        resume:{
                     config:[
                         {field:'profile',icon:'id'},
                         {field:'workHistory',icon:'work'},
@@ -42,7 +46,7 @@ export default  new Vuex.Store({
                         { contact: '手机', content: '13812345678' },
                         { contact: 'qq', content: '12345678' },
                     ],
-                }
+        }
     },
     mutations:{
         initState(state,payload){
@@ -55,6 +59,10 @@ export default  new Vuex.Store({
         updateResume(state,{path,value}){
             objectPath.set(state.resume,path,value)
             localStorage.setItem('state',JSON.stringify(state))
+        },
+        setUser(state,payload){
+            Object.assign(state.user,payload)
+            
         }
     }
 })
