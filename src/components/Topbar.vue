@@ -3,12 +3,17 @@
         <div class="wrapper">
             <span class="logo">Resumer</span>
             <div class="actions">
-                <span>{{user}}</span>
-                <a href="#" class="button primary" @click.prevent='signUpDialogVisible=true'>注册</a>
-                <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible=false">
-                    <SignUpForm @success="login"></SignUpForm>
-                </MyDialog>
-                <a href="#" class="button">登录</a>
+                <div class="userActions" v-if="logined">
+                    <span>你好，{{user.username}}</span>
+                    <a href="#" class="button" @click.prevent="signOut">登出</a>
+                </div>
+                <div class="userActions" v-else>
+                    <a href="#" class="button primary" @click.prevent='signUpDialogVisible=true'>注册</a>
+                    <MyDialog title="注册" :visible="signUpDialogVisible" @close="signUpDialogVisible=false">
+                        <SignUpForm @success="SignIn"></SignUpForm>
+                    </MyDialog>
+                    <a href="#" class="button">登录</a>
+                </div>
                 <button class="button primary">保存</button>
                 <button class="button">预览</button>
             </div>
@@ -17,79 +22,94 @@
 </template>
 
 <script>
-
     import MyDialog from './MyDialog'
     import SignUpForm from './SignUpform'
-    export default{
-        name:'topbar',
-        data:function(){
+    import AV from '../lib/leancloud'
+    export default {
+        name: 'topbar',
+        data: function () {
             return {
-                signUpDialogVisible:false
+                signUpDialogVisible: false
             }
         },
-        computed:{
-            user(){
+        computed: {
+            user() {
                 return this.$store.state.user
+            },
+            logined(){
+                return this.user.id
             }
         },
-        components:{
-            MyDialog,SignUpForm
+        components: {
+            MyDialog, SignUpForm
         },
-        methods:{
-            login(user){
+        methods: {
+            signIn(user) {
                 console.log(user)
-                this.signUpDialogVisible=false
-                this.$store.commit('setUser',user)
-                
+                this.signUpDialogVisible = false
+                this.$store.commit('setUser', user)
+
+            },
+            signOut(){
+                AV.User.logOut()
+                this.$store.commit('removeUser')
             }
         }
     }
+
 </script>
 
 <style scoped lang="scss">
-  // 自行查阅 scoped 的功能
-  // 见：https://cn.vuejs.org/v2/guide/comparison.html#CSS-的组件作用域
-  #topbar{
-    background:#ffffff;
-    box-shadow:0 1px 3px 0 rgba(0,0,0,0.25);
-    >.wrapper{
-      min-width: 1024px;
-      max-width: 1440px;
-      margin: 0 auto;
-      height:64px;
+    // 自行查阅 scoped 的功能
+    // 见：https://cn.vuejs.org/v2/guide/comparison.html#CSS-的组件作用域
+    #topbar {
+        background: #ffffff;
+        box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.25);
+        >.wrapper {
+            min-width: 1024px;
+            max-width: 1440px;
+            margin: 0 auto;
+            height: 64px;
+        }
+        >.wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 16px;
+        }
+        .logo {
+            font-size: 24px;
+            color: #000000;
+        }
     }
-    >.wrapper{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 0 16px;
+    
+    .button {
+        // 由于加了 scoped， 所以这个 button 选择器只在本组件内有效，不会影响其他组件
+        width: 72px;
+        height: 32px;
+        border: none;
+        cursor: pointer;
+        font-size: 18px; // 设计稿上是 20px，看起来太大，就改成 18px 了
+        background: #ddd;
+        color: #222;
+        text-decoration: none;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        vertical-align: middle;
+        &:hover {
+            box-shadow: 1px 1px 1px hsla(0, 0, 0, 0.50);
+        }
+        &.primary {
+            background: #02af5f;
+            color: white;
+        }
     }
-    .logo{
-      font-size:24px;
-      color:#000000;
+    
+    .actions{
+        display: flex;
+        .userActions{
+           margin-right: 3em; 
+        }
     }
-  }
-  .button{ // 由于加了 scoped， 所以这个 button 选择器只在本组件内有效，不会影响其他组件
-    width:72px;
-    height:32px;
-    border: none;
-    cursor: pointer;
-    font-size: 18px; // 设计稿上是 20px，看起来太大，就改成 18px 了
-    background:#ddd;
-    color: #222;
-    text-decoration: none;
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    vertical-align: middle;
-    &:hover{
-      box-shadow: 1px 1px 1px hsla(0, 0, 0, 0.50);
-    }
-    &.primary{
-      background:#02af5f;
-      color: white;
-    }
-  }
-  .actions > a{
-  }
 </style>
