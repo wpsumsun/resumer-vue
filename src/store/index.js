@@ -21,7 +21,7 @@ export default  new Vuex.Store({
                         {field:'contacts',icon:'phone'},
                     ],
                     profile:{
-                        name:'王嗨',
+                        name:'冷漠铁锤王富贵',
                         city:'衡水',
                         title:'辣鸡~',
                         birthday:'1990-01-01'
